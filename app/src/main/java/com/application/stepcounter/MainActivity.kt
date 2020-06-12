@@ -20,8 +20,8 @@ class MainActivity : AppCompatActivity() {
 
         mSensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
         mAccelerometer = mSensorManager!!.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
-        mStepCounter = StepCounter(object : StepCounter.OnShakeListener {
-            override fun onShake() {
+        mStepCounter = StepCounter(object : StepCounter.StepListener {
+            override fun onStepTaken() {
                 Toast.makeText(applicationContext, "Sensors are working", Toast.LENGTH_SHORT)
                     .show()
                 steps =+ 1
