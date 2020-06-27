@@ -13,7 +13,7 @@ object Util {
         return decimalFormat.format((steps.toDouble()/2000)*1.609*55)
     }
 
-    fun addYAxisValuesToArray(yAxisValues: ArrayList<Float>, f: Float) {
-        yAxisValues.add(f)
+    fun addAxisValuesToArray(axisValues: ArrayList<Int>, i: Int) {
+        axisValues.add(i)
     }
 }
