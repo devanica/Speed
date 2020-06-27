@@ -11,8 +11,7 @@ class StepCounter(private val mStepDetector: StepDetector) : SensorEventListener
     private val yAxisValues = ArrayList<Float>()
 
     override fun onSensorChanged(event: SensorEvent) {
-        if (event.values[1] >= 10) {
-            Log.e("y axis: ", event.values[1].toString())
+        if (event.values[1] >= 10 || event.values[0] >= 10 || event.values[2] >= 10 || event.values[0] <= -10 || event.values[1] <= -10 || event.values[2] <= -10) {
             addYAxisValuesToArray(yAxisValues, event.values[1])
             if (yAxisValues.size > 10){
                 mStepDetector.onStepDetected()
