@@ -28,13 +28,15 @@ class MainActivity : AppCompatActivity() {
 
         mSensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
         mAccelerometer = mSensorManager!!.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
-        mStepCounter = StepCounter(object : StepCounter.StepListener {
+        mStepCounter = StepCounter(object : StepCounter.StepDetector {
             @SuppressLint("SetTextI18n")
-            override fun onStepTaken() {
+            override fun onStepDetected() {
                 steps += 1
                 tv_steps.text = steps.toString()
-                tv_kilometers.text = "${Util.calculateKilometers(steps)} km"
-                tv_calories.text = "${Util.calculateCalories(steps)} Kcal"
+                tv_kilometers.text = Util.calculateKilometers(steps)
+                tv_calories.text = Util.calculateCalories(steps)
+                tv_main_calories.text = Util.calculateCalories(steps)
+                tv_main_steps.text = "Steps: $steps"
             }
         })
     }
