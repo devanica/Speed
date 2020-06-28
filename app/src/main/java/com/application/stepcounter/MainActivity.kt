@@ -54,6 +54,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun startForegroundService(steps: Int) {
         mSensorManager!!.registerListener(mStepCounter, mAccelerometer, SensorManager.SENSOR_DELAY_UI)
+        // This element will change on every onResume, onPause... So we should back it up in savedInstanceState.
         iv_on.setImageDrawable(resources.getDrawable(R.drawable.on_element))
 
         val serviceIntent = Intent(this, PedometerService::class.java)
