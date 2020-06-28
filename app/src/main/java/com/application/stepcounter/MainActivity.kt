@@ -1,11 +1,15 @@
 package com.application.stepcounter
 
 import android.annotation.SuppressLint
+import android.content.ComponentName
 import android.content.Context
-import android.graphics.drawable.Drawable
+import android.content.Intent
+import android.content.ServiceConnection
 import android.hardware.Sensor
 import android.hardware.SensorManager
 import android.os.Bundle
+import android.os.IBinder
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -14,6 +18,7 @@ class MainActivity : AppCompatActivity() {
     private var mSensorManager: SensorManager? = null
     private var mAccelerometer: Sensor? = null
 
+    private var sensorOn = false
     private var steps = 0
 
     @SuppressLint("SetTextI18n")
@@ -33,20 +38,35 @@ class MainActivity : AppCompatActivity() {
                 tv_main_calories.text = Util.calculateCalories(steps)
                 tv_main_steps.text = "Steps: $steps"
                 iv_on.setImageDrawable(resources.getDrawable(R.drawable.on_element))
+                startForegroundService(steps)
             }
         })
+
+        iv_on.setOnClickListener {
+            sensorOn = !sensorOn
+            if (sensorOn){
+                startForegroundService(steps)
+            } else{
+                stopForegroundService()
+            }
+        }
     }
 
-    override fun onResume() {
-        super.onResume()
+    private fun startForegroundService(steps: Int) {
         mSensorManager!!.registerListener(mStepCounter, mAccelerometer, SensorManager.SENSOR_DELAY_UI)
-        iv_on.setImageDrawable(resources.getDrawable(R.drawable.off_element))
+        iv_on.setImageDrawable(resources.getDrawable(R.drawable.on_element))
+
+        val serviceIntent = Intent(this, PedometerService::class.java)
+        serviceIntent.putExtra("steps", steps)
+        startService(serviceIntent)
     }
 
-    override fun onPause() {
+    private fun stopForegroundService() {
         mSensorManager!!.unregisterListener(mStepCounter)
         iv_on.setImageDrawable(resources.getDrawable(R.drawable.off_element))
-        super.onPause()
+
+        val serviceIntent = Intent(this, PedometerService::class.java)
+        stopService(serviceIntent)
     }
 }
 

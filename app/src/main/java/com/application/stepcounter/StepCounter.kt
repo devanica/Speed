@@ -10,8 +10,8 @@ class StepCounter(private val mStepDetector: StepDetector) : SensorEventListener
     private val axisValues = ArrayList<Int>()
 
     override fun onSensorChanged(event: SensorEvent) {
-        if (event.values[1] >= 10 ||
-            event.values[0] >= 10 ||
+        if (event.values[0] >= 10 ||
+            event.values[1] >= 10 ||
             event.values[2] >= 10 ||
             event.values[0] <= -10 ||
             event.values[1] <= -10 ||

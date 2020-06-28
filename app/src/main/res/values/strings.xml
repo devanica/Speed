@@ -4,4 +4,7 @@
     <string name="steps">Steps</string>
     <string name="kilometers">Km</string>
     <string name="calories">Calories</string>
+
+    <string name="channel_name">pedometer channel</string>
+    <string name="channel_description">no description</string>
 </resources>
