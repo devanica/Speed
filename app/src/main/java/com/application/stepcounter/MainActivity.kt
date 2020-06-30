@@ -1,15 +1,11 @@
 package com.application.stepcounter
 
 import android.annotation.SuppressLint
-import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
-import android.content.ServiceConnection
 import android.hardware.Sensor
 import android.hardware.SensorManager
 import android.os.Bundle
-import android.os.IBinder
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -28,6 +24,7 @@ class MainActivity : AppCompatActivity() {
 
         mSensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
         mAccelerometer = mSensorManager!!.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
+
         mStepCounter = StepCounter(object : StepCounter.StepDetector {
             @SuppressLint("SetTextI18n")
             override fun onStepDetected() {
@@ -54,7 +51,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun startForegroundService(steps: Int) {
         mSensorManager!!.registerListener(mStepCounter, mAccelerometer, SensorManager.SENSOR_DELAY_UI)
-        // This element will change on every onResume, onPause... So we should back it up in savedInstanceState.
         iv_on.setImageDrawable(resources.getDrawable(R.drawable.on_element))
 
         val serviceIntent = Intent(this, PedometerService::class.java)
