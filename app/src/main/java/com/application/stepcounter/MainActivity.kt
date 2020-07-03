@@ -65,6 +65,7 @@ class MainActivity : AppCompatActivity() {
         val serviceIntent = Intent(this, PedometerService::class.java)
         stopService(serviceIntent)
     }
+
 }
 
 

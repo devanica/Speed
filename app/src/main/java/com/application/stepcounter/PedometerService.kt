@@ -1,5 +1,6 @@
 package com.application.stepcounter
 
+import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.Service
@@ -29,11 +30,12 @@ class PedometerService : Service() {
             .setContentTitle("Speed")
             .setContentText(steps.toString())
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+        val notification: Notification = builder.build()
+        startForeground(notificationId, notification)
 
-        with(NotificationManagerCompat.from(this)) {
-            // notificationId is a unique int for each notification that you must define
-            notify(notificationId, builder.build())
-        }
+        /*with(NotificationManagerCompat.from(this)) {
+            notify(notificationId, notification)
+        }*/
         return super.onStartCommand(intent, flags, startId)
     }
 
