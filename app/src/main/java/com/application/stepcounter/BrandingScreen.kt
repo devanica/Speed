@@ -7,6 +7,7 @@ import android.view.animation.LinearInterpolator
 import android.view.animation.RotateAnimation
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.findNavController
 import kotlinx.coroutines.*
 
 class BrandingScreen : AppCompatActivity() {
@@ -30,7 +31,6 @@ class BrandingScreen : AppCompatActivity() {
 
                 leftSneaker.clearAnimation()
                 rightSneaker.clearAnimation()
-                onDestroy()
             }
         }
     }
