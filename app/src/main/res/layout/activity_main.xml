@@ -177,23 +177,21 @@
         </LinearLayout>
 
     </LinearLayout>
-
+    
     <ImageView
-        android:id="@+id/tv_scale"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_width="250dp"
+        android:layout_height="90dp"
         android:src="@drawable/scale_element"
+        android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
     </ImageView>
-
     <TextView
         android:id="@+id/tv_main_calories"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="25dp"
         android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="@color/grey"

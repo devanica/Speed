@@ -25,7 +25,7 @@ class BrandingScreen : AppCompatActivity() {
 
         jobSecond = CoroutineScope(Dispatchers.Main).launch {
             withContext(Dispatchers.Main){
-                delay(2000)
+                delay(3000)
                 val i = Intent(applicationContext, MainActivity::class.java)
                 startActivity(i)
 
